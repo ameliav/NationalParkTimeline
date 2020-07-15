@@ -5,7 +5,7 @@ import Timeline from './Timeline';
 //import history from "../history";
 
 class App extends React.Component {
- 
+
   render() {
     return (
       <div>
@@ -17,8 +17,8 @@ class App extends React.Component {
 
 export default App;
 
-/*
-<Router history={history} basename="/">
+//To have a route to the login and timeline page
+/*<Router history={history} basename="/">
           <div>
             <Route path="/" exact component={Login} />
             <Route path="/#/timeline" component={Timeline} />

@@ -5,18 +5,17 @@ import ParksHeader from './ParksHeader';
 import TopMenu from './TopMenu';
 //import BottomMenu from './BottomMenu';
 
-//getting the json with the timeline data
-const someEvents = jsonfile.default;
+const someEvents = jsonfile.default;                 //getting the json with the timeline data
 const distinctYears = [...new Set(someEvents.map(x => x.Year))]; //a new set with distinct years
 const eventsMapping = () => {
-    let eventsMap = new Map(); //hosts key value pairs similar to an object
+    let eventsMap = new Map();                  //map creates key value pairs similar to an object
     for (let year of distinctYears) {
         let yearlyEvents = someEvents.filter((event) => {
             if (event.Year === year) {
                 return event;
             }
         })
-        eventsMap.set(year, yearlyEvents)  //creates Map with the key being the year and array with all objects for that year
+        eventsMap.set(year, yearlyEvents)  //creates Map with the key as year and array of objects for that year
     }
     return eventsMap;
 }
@@ -27,7 +26,7 @@ class Timeline extends React.Component {
         return (
             distinctYears.map((y, index) => {
                 return ( 
-                    <div key={index} className="ui text container">
+                <div key={index} className="ui text container">
                     <div className="ui grid">
                         <div key={index} className="row" name={index + "_" + y}>
                             <div className="five wide column">
@@ -36,11 +35,12 @@ class Timeline extends React.Component {
                                 </div>
                             </div>
                         </div>
-                         <MonthlyEvent e={eventsMapping().get(y)} />                                
+                        <MonthlyEvent e={eventsMapping().get(y)} />                                
                     </div>
-                    </div>                    
+                </div>                    
                 )
-            }))
+            })
+        )
     }
     render() {      
         return (
@@ -54,7 +54,6 @@ class Timeline extends React.Component {
                     <ParksHeader/>
                     <div className="row"><div className="column"></div></div>
                     {this.renderHelper()}
-
                 </div>
             </div>
         )

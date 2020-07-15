@@ -18,9 +18,8 @@ class BottomMenu extends React.Component {
                 text: this.props.yearArray[i]
             });
         }
-        return this.arr; //returns an array of objects [{key:'',value:'',text:''}, {key:'',value:'',text:''}]
+        return this.arr; 
     }
-
     handleChange = (e, { value }) => {
         scroller.scrollTo(value, {
             duration: 800,
@@ -70,7 +69,6 @@ class BottomMenu extends React.Component {
     mySort = (myArray) => {
         return myArray.sort((a, b) => this.sortAlphaNumeric(a['text'], b['text']));
     }
-
     sortAlphaNumeric = (a, b) => {
         a = typeof a === 'string' ? a.toLowerCase() : a.toString();
         b = typeof b === 'string' ? b.toLowerCase() : b.toString();
@@ -79,84 +77,29 @@ class BottomMenu extends React.Component {
     handleClick = () => {
         Swal.fire({
             title: 'About',
-            html: 'This is a project made by <b>Amelia V.</b> ' +
-                'to show the order that National Parks ' +
-                'were established and info about each one.' +
-                '<br/><br/>Data was taken from the wikipedia page on ' +
+            html:'This is a project made by <b>Amelia V.</b> to show the order that National Parks '+
+                'were established and info about each one.<br/><br/>Data was taken from the wikipedia page on '+
                 '<a href="https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States">National Parks.</a>' +
                 '<br/><br/>Using the top menu, you can go to a specific year or park.',
-            icon: 'info',
-            confirmButtonText:
-                '<i className="icon thumbs up"></i> Got it!'
+            icon:'info',
+            confirmButtonText:'<i className="icon thumbs up"></i> Got it!'
         })
     }
     render() {
         return (
             <div className="ui bottom fixed menu">
-
-                <div className="right menu">
-                  
+                <div className="right menu">               
                     <div className="ui item">
-                        Jump to
-                        &nbsp;&nbsp;
-                        {this.YearDropdownSearchSelect()}
-                        &nbsp;&nbsp;
+                        Jump to&nbsp;&nbsp;
+                        {this.YearDropdownSearchSelect()}&nbsp;&nbsp;
                         {this.NameDropdownSearchSelect()}
                     </div>
                     <div className="ui item">
                         {this.NameDropdownSearchSelect()}
                     </div>
-
-
                 </div>
             </div>
         )
     }
 }
 export default BottomMenu;
-
-/*
-<div className="ui item">
-    <div className="ui primary button" onClick={() => history.push('/')}>Logout</div>
-</div>
-
-    yearOptions = () => {
-        return (this.props.yearArray.map((y, i) => {
-            this.arr = [...this.arr, { key: i, value: y, text: y }];
-            return this.arr;
-            })
-        )
-        //return this.arr;
-    }
-*/
-/*
-    yearOptions = () => {
-        return this.props.yearArray.map((y, i) => {
-            return [...this.arr, { key: i, value: i, text: y }];
-            /*return (
-                <option key={i} value={y} >{y}</option>
-            )
-        })
-
-        //return arr;
-    }
-*/
-/*
-{this.DropdownExampleSearchSelection()}
-
-<div className="item">
-    <select className="ui simple dropdown item" >
-        <option value="">Year</option>
-        {this.yearOptions()}
-    </select>
-</div>
-
-<Dropdown
-    clearable
-    fluid
-    search
-    selection
-    options={monthOptions(this.props.yearArray)}
-    placeholder='Year'
-/>
-*/

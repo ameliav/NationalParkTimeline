@@ -18,16 +18,37 @@ class TopMenu extends React.Component {
                 text: this.props.yearArray[i]
             });
         }
-        return this.arr; //returns an array of objects [{key:'',value:'',text:''}, {key:'',value:'',text:''}]
+        return this.arr; //returns an array of objects [{key:'',value:'',text:''}] used for the year dropdown
     }
 
-    handleChange = (e,{ value }) => {
+    nameOptions = () => {
+        this.props.e.map((y) => {
+            return (
+                this.arr2.push({
+                    key: y["Name"],
+                    value: y["Name"],
+                    text: y["Name"]
+                })
+            )
+        })
+        return this.mySort(this.arr2); //returns an array of objects used for the name (of park) dropdown
+    }
+    mySort = (myArray) => {  //will make it so the names in the dropdown are in alphbetical order
+        return myArray.sort((a, b) => this.sortAlphaNumeric(a['text'], b['text']));
+    }
+    sortAlphaNumeric = (a, b) => {
+        a = typeof a === 'string' ? a.toLowerCase() : a.toString();
+        b = typeof b === 'string' ? b.toLowerCase() : b.toString();
+        return a.localeCompare(b);
+    }
+
+    yHandleChange = (e, { value }) => {
         scroller.scrollTo(value, {
             duration: 800,
             delay: 0,
             smooth: 'easeInOutQuart'
         })
-        };
+    };
     nHandleChange = (e, { value }) => {
         scroller.scrollTo(value, {
             duration: 800,
@@ -42,7 +63,7 @@ class TopMenu extends React.Component {
             selection
             options={this.yearOptions()}
             placeholder="Go to Year"
-            onChange= {this.handleChange}
+            onChange= {this.yHandleChange}
         />
     )
     NameDropdownSearchSelect = () => (
@@ -55,41 +76,19 @@ class TopMenu extends React.Component {
             onChange={this.nHandleChange}
         />
     )
-    nameOptions = () => {
-        this.props.e.map((y, i) => {
-            return (
-                this.arr2.push({
-                    key: y["Name"],
-                    value: y["Name"],
-                    text: y["Name"]
-                })                   
-            )
-        })
-        return this.mySort(this.arr2);
-    }
-    mySort = (myArray) => {
-        return myArray.sort((a, b) => this.sortAlphaNumeric(a['text'], b['text']) );
-    }
-
-    sortAlphaNumeric = (a,b) => {
-        a = typeof a === 'string' ? a.toLowerCase() : a.toString();
-        b = typeof b === 'string' ? b.toLowerCase() : b.toString();
-        return a.localeCompare(b);
-    }
+    
     handleClick = () => {
         Swal.fire({
             title: 'About',
-            html: 'This is a project made by <b>Amelia V.</b> ' +
-            'to show the order that National Parks ' + 
-            'were established and info about each one.' +
-            '<br/><br/>Data was taken from the wikipedia page on '+
+            html: 'This is a project made by <b>Amelia V.</b> to show the order that National Parks '+
+            'were established and info about each one.<br/><br/>Data was taken from the wikipedia page on '+
             '<a href="https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States">National Parks.</a>'+
             '<br/><br/>Using the top menu, you can go to a specific year or park.',
-            
-            confirmButtonText:
-                '<i className="icon thumbs up"></i> Ok'
+            icon: 'info',
+            confirmButtonText:'<i className="icon thumbs up"></i> Ok'
         })    
     } 
+
     render() {
         return (
             <div className="ui mini stackable top inverted green fixed menu">
@@ -102,16 +101,13 @@ class TopMenu extends React.Component {
                     </div>
                 </div>
                 <div className="right menu">
-                    <div className="ui item">      
-                                     
+                    <div className="ui item">                           
                         {this.YearDropdownSearchSelect()}
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         {this.NameDropdownSearchSelect()}
                         &nbsp;&nbsp;&nbsp;
                         <div className="ui primary button" onClick={this.handleClick}>About</div>
-                    </div>
-                  
-                    
+                    </div>                                 
                 </div>
             </div>
         )
@@ -119,48 +115,7 @@ class TopMenu extends React.Component {
 }
 export default TopMenu;
 
-/*
-<div className="ui item">
+//A logout button to get back to the login page
+/*<div className="ui item">
     <div className="ui primary button" onClick={() => history.push('/')}>Logout</div>
-</div>
-
-    yearOptions = () => {
-        return (this.props.yearArray.map((y, i) => {
-            this.arr = [...this.arr, { key: i, value: y, text: y }];
-            return this.arr;
-            })
-        )
-        //return this.arr;
-    }
-*/
-/*
-    yearOptions = () => {
-        return this.props.yearArray.map((y, i) => {
-            return [...this.arr, { key: i, value: i, text: y }];
-            /*return (
-                <option key={i} value={y} >{y}</option>
-            )
-        })
-
-        //return arr;
-    }
-*/
-/*
-{this.DropdownExampleSearchSelection()}
-
-<div className="item">
-    <select className="ui simple dropdown item" >
-        <option value="">Year</option>
-        {this.yearOptions()}
-    </select>
-</div>
-
-<Dropdown
-    clearable
-    fluid
-    search
-    selection
-    options={monthOptions(this.props.yearArray)}
-    placeholder='Year'
-/>
-*/
+</div>*/

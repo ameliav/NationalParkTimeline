@@ -4,34 +4,32 @@ import { Accordion, Label } from 'semantic-ui-react';
 class AccordionEvent extends React.Component {
    
     render() {
+        //map goes through each month and mypanels uses its object's values which will be in its own Accordion
         return this.props.mthArray.map((obj, i) => {
-
 
             const mypanels = [{
                 key: `panel-${i}`,
-                title: {
-                    content: <Label content={' ' + obj["Name"]} />,
-                },
-                content: {
-                    content: (
-                        <div className="ui vertical fluid inverted olive menu" name={obj["Name"]}>
-                            <div className="active item">
-                                Date Established: {obj["Month"] + " " + obj["Day"] + ", " + obj["Year"]}
-                            </div>
-                            <div className="active item">
-                                Park Area in 2019: {obj["Park Area in 2019"]}
-                            </div>
-                            <div className="active item">
-                                Annual Recreation Visitors in 2019: {obj["Annual Recreation visitors in 2019"]}
-                            </div>
-                            <div className="active item">Location: {obj["Location"]}</div>
-                            <div className="active item">{obj["Description"]}</div>  
-                            <div className="active item">
-                                <img src={obj["Image Link"]} alt={obj["Name"]}/>
-                            </div>                      
+                title: { content: <Label content={' ' + obj["Name"]} /> },
+                content: { content: (
+                    <div className="ui vertical fluid inverted olive menu" name={obj["Name"]}>
+                        <div className="active item">
+                            Date Established: {obj["Month"] + " " + obj["Day"] + ", " + obj["Year"]}
                         </div>
+                        <div className="active item">
+                            Park Area in 2019: {obj["Park Area in 2019"]}
+                        </div>
+                        <div className="active item">
+                            Annual Recreation Visitors in 2019: {obj["Annual Recreation visitors in 2019"]}
+                        </div>
+                        <div className="active item">Location: {obj["Location"]}</div>
+                        <div className="active item">{obj["Description"]}</div>  
+                        <div className="active item">
+                            <img src={obj["Image Link"]} alt={obj["Name"]}/>
+                        </div>                      
+                    </div>
                 )},
             }]
+            
             return (
                 <div key={i} className="item">
                     <Accordion
@@ -43,7 +41,6 @@ class AccordionEvent extends React.Component {
                 </div>
             )
         })
-
     }
 }
 

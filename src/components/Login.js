@@ -9,11 +9,9 @@ class Login extends React.Component {
     state = { username: '', password: ''}
 
     usernameChange = (e, {value }) => {
-        //console.log(value);
         this.setState({ username: value });
     }
     passwordChange = (e, { value }) => {
-        //console.log(value);
         this.setState({ password: value });
     }
 
@@ -60,7 +58,6 @@ class Login extends React.Component {
                     </Segment>
                 </Form>
             </div>
-
         </div>
         </div>
         )

@@ -7,11 +7,10 @@ class ParksHeader extends React.Component {
             <div className="row">
             <div className="column">
                 <Header as='h1' color='green' textAlign='center' icon>
-                    <Icon name="tree" />
-                National Parks
+                    <Icon name="tree"/>
+                    National Parks
                 <Header.Subheader color='green'>Establishment Timeline</Header.Subheader>
-                </Header>
-               
+                </Header>              
             </div>
             </div>                   
         )

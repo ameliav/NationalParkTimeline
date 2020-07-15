@@ -6,22 +6,19 @@ class MonthlyEvent extends React.Component {
     distinctMonths = [...new Set(this.props.e.map(x => x.Month))];
 
     eventsMapping = () => {
-        let monthlyMap = new Map(); //creates new Map (key value pairs)
-        for (let month of this.distinctMonths) {  //loop through set of distinct months. example: (Jan, Feb, Mar)
-            let monthlyEvents = this.props.e.filter((event) => {  //filter only returns what is true inside its function
-                if (event.Month === month) {           //filter thru data when Month is equal to the month in the distinctMonths set
+        let monthlyMap = new Map();               //creates new Map (key value pairs)
+        for (let month of this.distinctMonths) {  //loop thru set of distinct months. example: (Jan, Feb, Mar)
+            let monthlyEvents = this.props.e.filter((event) => {  //returns only what is true inside its function
+                if (event.Month === month) {           //filter thru data when Month = the month in the distinctMonths set
                     return event;
                 }
             })
-            monthlyMap.set(month, monthlyEvents)  //creates Map with the key being the year and array with all objects for that year
+            monthlyMap.set(month, monthlyEvents)  //creates Map with the key as month and array of objects for that month
         }
         return monthlyMap;
     }
     render(){
-
-        return (this.distinctMonths.map((mth, i) => {
-            //mthArray = this.eventsMapping().get(mth);
-            
+        return (this.distinctMonths.map((mth, i) => {       
                 return (
                     <div key={i} className="row">          
                         <div className="right floated four wide column">
@@ -31,16 +28,12 @@ class MonthlyEvent extends React.Component {
                         </div>
                         <div className="left aligned eleven wide column">
                             <div className="ui vertical inverted olive fluid menu">
-                                <AccordionEvent mthArray={this.eventsMapping().get(mth)}/>
-                                
+                                <AccordionEvent mthArray={this.eventsMapping().get(mth)}/>                               
                             </div>
                         </div>
                     </div>                    
-                )
-            
-            })
-
-        
+                )         
+            })      
         )
     }
 }
