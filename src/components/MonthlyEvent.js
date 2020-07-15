@@ -26,7 +26,7 @@ class MonthlyEvent extends React.Component {
                     <div key={i} className="row">          
                         <div className="right floated four wide column">
                             <div className="ui vertical inverted green fluid menu">
-                                <h5 className="ui right aligned header item">{mth}</h5>
+                                <h5 className="ui right aligned header item">{mth.substr(0,3).toUpperCase()}</h5>
                             </div>
                         </div>
                         <div className="left aligned eleven wide column">

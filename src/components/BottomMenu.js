@@ -5,12 +5,12 @@ import Swal from 'sweetalert2';
 import Scroll from 'react-scroll';
 let scroller = Scroll.scroller;
 
-class TopMenu extends React.Component {
+class BottomMenu extends React.Component {
     arr = [];
     arr2 = [];
     len = this.props.yearArray.length;
-    
-    yearOptions = () => {     
+
+    yearOptions = () => {
         for (var i = 0; i < this.len; i++) {
             this.arr.push({
                 key: i + "_" + this.props.yearArray[i],
@@ -21,13 +21,13 @@ class TopMenu extends React.Component {
         return this.arr; //returns an array of objects [{key:'',value:'',text:''}, {key:'',value:'',text:''}]
     }
 
-    handleChange = (e,{ value }) => {
+    handleChange = (e, { value }) => {
         scroller.scrollTo(value, {
             duration: 800,
             delay: 0,
             smooth: 'easeInOutQuart'
         })
-        };
+    };
     nHandleChange = (e, { value }) => {
         scroller.scrollTo(value, {
             duration: 800,
@@ -41,8 +41,8 @@ class TopMenu extends React.Component {
             search
             selection
             options={this.yearOptions()}
-            placeholder="Go to Year"
-            onChange= {this.handleChange}
+            placeholder="Year"
+            onChange={this.handleChange}
         />
     )
     NameDropdownSearchSelect = () => (
@@ -51,7 +51,7 @@ class TopMenu extends React.Component {
             search
             selection
             options={this.nameOptions()}
-            placeholder="Go to Park"
+            placeholder="Park"
             onChange={this.nHandleChange}
         />
     )
@@ -62,16 +62,16 @@ class TopMenu extends React.Component {
                     key: y["Name"],
                     value: y["Name"],
                     text: y["Name"]
-                })                   
+                })
             )
         })
         return this.mySort(this.arr2);
     }
     mySort = (myArray) => {
-        return myArray.sort((a, b) => this.sortAlphaNumeric(a['text'], b['text']) );
+        return myArray.sort((a, b) => this.sortAlphaNumeric(a['text'], b['text']));
     }
 
-    sortAlphaNumeric = (a,b) => {
+    sortAlphaNumeric = (a, b) => {
         a = typeof a === 'string' ? a.toLowerCase() : a.toString();
         b = typeof b === 'string' ? b.toLowerCase() : b.toString();
         return a.localeCompare(b);
@@ -80,44 +80,40 @@ class TopMenu extends React.Component {
         Swal.fire({
             title: 'About',
             html: 'This is a project made by <b>Amelia V.</b> ' +
-            'to show the order that National Parks ' + 
-            'were established and info about each one.' +
-            '<br/><br/>Data was taken from the wikipedia page on '+
-            '<a href="https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States">National Parks.</a>'+
-            '<br/><br/>Using the top menu, you can go to a specific year or park.',
-            
+                'to show the order that National Parks ' +
+                'were established and info about each one.' +
+                '<br/><br/>Data was taken from the wikipedia page on ' +
+                '<a href="https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States">National Parks.</a>' +
+                '<br/><br/>Using the top menu, you can go to a specific year or park.',
+            icon: 'info',
             confirmButtonText:
-                '<i className="icon thumbs up"></i> Ok'
-        })    
-    } 
+                '<i className="icon thumbs up"></i> Got it!'
+        })
+    }
     render() {
         return (
-            <div className="ui mini stackable top inverted green fixed menu">
-                <div className="active header item">
-                    <div className="ui inverted center aligned small header">
-                        <i className="tree icon"></i>
-                        <div className="content">
-                            National Park Timeline
-                        </div>
-                    </div>
-                </div>
+            <div className="ui bottom fixed menu">
+
                 <div className="right menu">
-                    <div className="ui item">      
-                                     
-                        {this.YearDropdownSearchSelect()}
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        {this.NameDropdownSearchSelect()}
-                        &nbsp;&nbsp;&nbsp;
-                        <div className="ui primary button" onClick={this.handleClick}>About</div>
-                    </div>
                   
-                    
+                    <div className="ui item">
+                        Jump to
+                        &nbsp;&nbsp;
+                        {this.YearDropdownSearchSelect()}
+                        &nbsp;&nbsp;
+                        {this.NameDropdownSearchSelect()}
+                    </div>
+                    <div className="ui item">
+                        {this.NameDropdownSearchSelect()}
+                    </div>
+
+
                 </div>
             </div>
         )
     }
 }
-export default TopMenu;
+export default BottomMenu;
 
 /*
 <div className="ui item">

@@ -5,6 +5,8 @@ class AccordionEvent extends React.Component {
    
     render() {
         return this.props.mthArray.map((obj, i) => {
+
+
             const mypanels = [{
                 key: `panel-${i}`,
                 title: {

@@ -19,10 +19,9 @@ class Login extends React.Component {
 
     handleSubmit = () => {
         const { username, password } = this.state;
-
         //console.log(`username: ${username}, password: ${password}`);
         if (username === 'admin' && password === 'test') {
-            history.push('/timeline')
+            history.push('/#/timeline')
         }
         else {
             Swal.fire({
